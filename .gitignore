@@ -1,0 +1,19 @@
+# Python & Environments
+venv/
+__pycache__/
+*.pyc
+.env
+.webui_secret_key
+
+# IDEs & Checkpoints
+.vscode/
+.ipynb_checkpoints/
+
+# Data & Databases
+*.csv
+*.db
+.DS_Store
+
+# Ignore Drafts and Outputs (Optional, removes clutter)
+outputs/
+draft_v1_ollama_crewai/
