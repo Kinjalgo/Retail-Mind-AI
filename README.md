@@ -2,6 +2,10 @@
 
 RetailMind AI is an interactive, local AI-powered analytics dashboard built for retail executives. It processes complex transaction, demographic, and campaign data (up to millions of rows) to provide conversational insights, automated metric calculations, and interactive visualizations while guaranteeing 100% data privacy.
 
+<div align="center">
+  <img src="assets/Dashboard.png" alt="RetailMind AI Dashboard" width="800"/>
+</div>
+
 ## Architecture
 
 ```text
@@ -18,6 +22,10 @@ The application combines a reactive frontend with a multi-agent backend. The bac
 - **Graceful Data Engineering:** Memory-optimized Pandas pipelines parse multiple large CSVs, downcast data types automatically, and execute fast programmatic joins.
 - **Behavioral & Demographic Analytics:** Automatically segments customers by spending trends, engagement scores, and demographic profiles.
 - **Privacy-Preserving Local AI:** Utilizes local LLMs via Ollama. No proprietary retail data is ever sent to OpenAI, Anthropic, or external APIs.
+
+<div align="center">
+  <img src="assets/AIOutput.png" alt="AI Natural Language to SQL" width="800"/>
+</div>
 
 ## Prerequisites
 - **Python 3.10+**

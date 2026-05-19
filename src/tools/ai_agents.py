@@ -179,8 +179,7 @@ def generate_local_insight(question: str, result_df: pd.DataFrame, question_type
     # BEHAVIORAL
     # =====================================================
 
-    elif question_type == "behavioral":
-
+    if question_type == "behavioral":
         increasing_row = result_df[result_df["Trend"] == "Increasing"]
         decreasing_row = result_df[result_df["Trend"] == "Decreasing"]
         stable_row = result_df[result_df["Trend"] == "Stable"]
@@ -189,53 +188,31 @@ def generate_local_insight(question: str, result_df: pd.DataFrame, question_type
         dec_customers = int(decreasing_row["Customers"].iloc[0]) if not decreasing_row.empty else 0
         stable_customers = int(stable_row["Customers"].iloc[0]) if not stable_row.empty else 0
 
-        response += f"""
-    ### Behavioral Trend Analysis
+        avg_inc_spend = float(increasing_row["Avg_Spend"].iloc[0]) if not increasing_row.empty else 0
+        avg_dec_spend = float(decreasing_row["Avg_Spend"].iloc[0]) if not decreasing_row.empty else 0
+        avg_stable_spend = float(stable_row["Avg_Spend"].iloc[0]) if not stable_row.empty else 0
 
-    - Increasing customers: {inc_customers}
-    - Decreasing customers: {dec_customers}
-    - Stable customers: {stable_customers}
+        return f"""### Behavioral Trend Analysis
+- Increasing customers: {inc_customers:,}
+- Decreasing customers: {dec_customers:,}
+- Stable customers: {stable_customers:,}
 
-    The data suggests customer spending behavior is polarized, with a significant portion of customers reducing spending while a smaller high-value segment is increasing spending aggressively.
+### Spending Patterns
+- Increasing segment avg spend: ${avg_inc_spend:,.2f}
+- Decreasing segment avg spend: ${avg_dec_spend:,.2f}
+- Stable segment avg spend: ${avg_stable_spend:,.2f}
 
-    Business implication:
-    Focus retention campaigns on decreasing customers while maximizing loyalty strategies for increasing customers.
-    """
+### Business Interpretation
+The analysis shows that a concentrated group of customers is driving significant value growth, while a larger portion demonstrates declining engagement behavior.
 
-    inc_customers = int(increasing_row["Customers"].iloc[0]) if not increasing_row.empty else 0
-    dec_customers = int(decreasing_row["Customers"].iloc[0]) if not decreasing_row.empty else 0
-    stable_customers = int(stable_row["Customers"].iloc[0]) if not stable_row.empty else 0
-
-    avg_inc_spend = float(increasing_row["Avg_Spend"].iloc[0]) if not increasing_row.empty else 0
-    avg_dec_spend = float(decreasing_row["Avg_Spend"].iloc[0]) if not decreasing_row.empty else 0
-    avg_stable_spend = float(stable_row["Avg_Spend"].iloc[0]) if not stable_row.empty else 0
-
-    return f"""
-    ### Behavioral Trend Analysis
-
-    - Increasing customers: {inc_customers:,}
-    - Decreasing customers: {dec_customers:,}
-    - Stable customers: {stable_customers:,}
-
-    ### Spending Patterns
-
-    - Increasing segment avg spend: ${avg_inc_spend:,.2f}
-    - Decreasing segment avg spend: ${avg_dec_spend:,.2f}
-    - Stable segment avg spend: ${avg_stable_spend:,.2f}
-
-    ### Business Interpretation
-
-    The analysis shows that a concentrated group of customers is driving significant value growth, while a larger portion demonstrates declining engagement behavior.
-
-    ### Recommended Action
-
-    Deploy retention campaigns toward decreasing customers while strengthening loyalty and personalization strategies for high-growth shoppers.
-    """
+### Recommended Action
+Deploy retention campaigns toward decreasing customers while strengthening loyalty and personalization strategies for high-growth shoppers.
+"""
 
     # =====================================================
     # ENGAGEMENT
     # =====================================================
-    if question_type in ["behavioral", "engagement"]:
+    if question_type == "engagement":
 
         top_customer = result_df.iloc[0]
 
