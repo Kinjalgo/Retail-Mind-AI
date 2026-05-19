@@ -4,7 +4,7 @@ RetailMind AI is an interactive, local AI-powered analytics dashboard built for 
 
 ## Architecture
 
-```mermaid
+```text
 ┌──────────────────┐    Pandas / SQLite    ┌───────────────────┐    Local API    ┌──────────────┐
 │  Streamlit UI    │ ────────────────────▶ │ CrewAI / LangChain│ ───────────────▶│    Ollama    │
 │    (app.py)      │ ◀──────────────────── │  (ai_agents.py)   │ ◀───────────────│ (Llama 3.1)  │
